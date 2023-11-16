@@ -1,7 +1,9 @@
-package com.educandoweb.course.entities;
+package com.educandoweb.course.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ public class User implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "client")
+    @Fetch(FetchMode.JOIN)
     List<Order> orders = new ArrayList<>();
 
     public User() {}

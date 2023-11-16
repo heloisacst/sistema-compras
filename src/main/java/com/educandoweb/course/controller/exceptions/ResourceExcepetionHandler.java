@@ -1,4 +1,4 @@
-package com.educandoweb.course.resources.exceptions;
+package com.educandoweb.course.controller.exceptions;
 
 import com.educandoweb.course.service.exceptions.DatabaseException;
 import com.educandoweb.course.service.exceptions.ResourceNotFoundException;

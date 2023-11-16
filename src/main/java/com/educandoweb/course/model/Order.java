@@ -1,7 +1,8 @@
-package com.educandoweb.course.entities;
+package com.educandoweb.course.model;
 
-import com.educandoweb.course.entities.enums.OrderStatus;
+import com.educandoweb.course.model.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
@@ -11,6 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tb_order")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Order implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -19,7 +21,7 @@ public class Order implements Serializable {
     private Long id;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-    private Instant moment;
+    private Instant moment = Instant.now();
     private Integer orderStatus;
 
     @ManyToOne

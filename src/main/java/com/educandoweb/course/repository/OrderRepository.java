@@ -1,6 +1,6 @@
-package com.educandoweb.course.repositories;
+package com.educandoweb.course.repository;
 
-import com.educandoweb.course.entities.Order;
+import com.educandoweb.course.model.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {

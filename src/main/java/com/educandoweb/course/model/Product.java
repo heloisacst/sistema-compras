@@ -1,4 +1,4 @@
-package com.educandoweb.course.entities;
+package com.educandoweb.course.model;
 
 import jakarta.persistence.*;
 
@@ -20,7 +20,11 @@ public class Product implements Serializable {
     private Double price;
     private String imgUrl;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY,
+                cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+                })
     @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
@@ -76,6 +80,11 @@ public class Product implements Serializable {
 
     public Set<Category> getCategories() {
         return categories;
+    }
+
+    public void addCategory(Category category) {
+        categories.add(category);
+        category.getProducts().add(this);
     }
 
     @Override
